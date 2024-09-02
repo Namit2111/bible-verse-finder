@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Verse Similarity</title>
+</head>
+<body>
+    <h1>Bible Verse Similarity</h1>
+    <form method="POST">
+        <label for="user_input">Enter a Bible verse:</label><br>
+        <input type="text" id="user_input" name="user_input" required><br><br>
+        <input type="submit" value="Find Similar Verses">
+    </form>
+
+    {% if results %}
+        <h2>Results for "{{ user_input }}"</h2>
+        <ul>
+            {% for verse, similarity in results %}
+                <li><strong>Verse:</strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
