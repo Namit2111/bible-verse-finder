@@ -1,0 +1,16 @@
+blinker==1.8.2
+click==8.1.7
+colorama==0.4.6
+Flask==3.0.3
+itsdangerous==2.2.0
+Jinja2==3.1.4
+joblib==1.4.2
+MarkupSafe==2.1.5
+nltk==3.9.1
+numpy==2.1.0
+regex==2024.7.24
+scikit-learn==1.5.1
+scipy==1.14.1
+threadpoolctl==3.5.0
+tqdm==4.66.5
+Werkzeug==3.0.4
