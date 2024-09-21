@@ -110,11 +110,11 @@
             {% if valid_results %}
                 <ul>
                     {% for verse, similarity in valid_results %}
-                        <li><strong>Verse: 1 John </strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+                        <li><strong>Verse: </strong>  1 John  {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>Your search returned void 😅, good news God's word never does!<br>Try another search 🔎 </br> </p>
+                <p>Your search returned void 😅, good news God's word never does! Try another search 🔎 </p>
             {% endif %}
         {% endif %}
     </div>
