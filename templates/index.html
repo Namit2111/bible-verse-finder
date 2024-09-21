@@ -86,6 +86,7 @@
         }
     </style>
 </head>
+
 <body>
     <div>
         <h1>Bible Verse Similarity</h1>
@@ -99,11 +100,18 @@
 
         {% if results %}
             <h2>Results for "{{ user_input }}"</h2>
+            {% set has_results = false %}
             <ul>
                 {% for verse, similarity in results %}
-                    <li><strong>Verse:</strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+                    {% if similarity > 0 %}
+                        {% set has_results = true %}
+                        <li><strong>Verse:</strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+                    {% endif %}
                 {% endfor %}
             </ul>
+            {% if not has_results %}
+                <p>Your search returned void 😅, good news God's word never does! Try another search. 📰</p>
+            {% endif %}
         {% endif %}
     </div>
 </body>
