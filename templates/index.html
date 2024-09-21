@@ -100,17 +100,21 @@
 
         {% if results %}
             <h2>Results for "{{ user_input }}"</h2>
-            {% set has_results = false %}
-            <ul>
-                {% for verse, similarity in results %}
-                    {% if similarity > 0 %}
-                        {% set has_results = true %}
-                        <li><strong>Verse:</strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% if not has_results %}
-                <p>Your search returned void 😅, good news God's word never does! Try another search. 📰</p>
+            {% set valid_results = [] %}
+            {% for verse, similarity in results %}
+                {% if similarity > 0 %}
+                    {% set _ = valid_results.append((verse, similarity)) %}
+                {% endif %}
+            {% endfor %}
+
+            {% if valid_results %}
+                <ul>
+                    {% for verse, similarity in valid_results %}
+                        <li><strong>Verse: 1 John </strong> {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Your search returned void 😅, good news God's word never does!<br>Try another search 🔎 </br> </p>
             {% endif %}
         {% endif %}
     </div>
