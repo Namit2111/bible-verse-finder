@@ -11,7 +11,7 @@ Consider sentence transformers from Hugging Face.
 4. Add a Database
 💾 Implement MongoDB or Firebase to store user data, search history, and clustering results.
 5. Improve Search Functionality
-🔍 Implement a more robust search engine like Elasticsearch for efficient Bible verse lookup.
+🔍 Implement a search engine for Bible verse lookup.
 Add filters for books and chapters to refine search results.
 6. Multiple Translations
 🌐 Allow users to compare verses across different Bible translations.
