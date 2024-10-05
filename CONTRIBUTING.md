@@ -19,6 +19,7 @@ Thank you for your interest in contributing to **Bible-Verse-Finder**! We apprec
 ## How Can I Contribute?
 
 You can contribute to this project in several ways:
+- Add Github username to `contributing.md`
 - Reporting bugs
 - Suggesting new features or improvements
 - Writing code (Flask, Machine Learning, HTML)
