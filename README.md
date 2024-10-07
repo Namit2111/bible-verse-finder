@@ -11,7 +11,7 @@ Welcome to the **Bible Verse Finder**! This repository contains code to parse an
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.x
+- Python 3.10.x
 - Required Python libraries:
   - nltk
   - Flask
