@@ -19,6 +19,8 @@ const config = {
     },
     extend: {
       colors: {
+        siteColor: "#4CAF50",
+        siteBackground: "#f5f5f5",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
