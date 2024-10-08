@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, jsonify
 import pickle
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -27,10 +27,15 @@ X_loaded = loaded_vectorizer.transform(John)
 # Predict the clusters for the John verses
 labels_loaded = loaded_km.predict(X_loaded)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/api/predict', methods=['POST'])
+def predict():
     if request.method == 'POST':
-        user_input = request.form['user_input']
+        # Get user input from the request body (JSON format)
+        data = request.json
+        user_input = data.get('user_input')
+
+        if not user_input:
+            return jsonify({"error": "No input provided"}), 400
 
         # Transform the user input using the loaded TF-IDF vectorizer
         user_input_vector = loaded_vectorizer.transform([user_input])
@@ -52,11 +57,19 @@ def index():
         top_indices = similarities.argsort()[-5:][::-1]
 
         # Prepare the results
-        results = [(cluster_verses[i], similarities[i]) for i in top_indices]
+        results = [{"verse": cluster_verses[i], "similarity": float(similarities[i])} for i in top_indices]
 
-        return render_template('index.html', results=results, user_input=user_input)
+        # Return the results and user input as a JSON response
+        return jsonify({
+            "user_input": user_input,
+            "results": results
+        }), 200
 
-    return render_template('index.html', results=None)
+# If you want to keep the existing HTML-based endpoint as well
+#@app.route('/')
+#def index():
+#    return "Use the /api/predict endpoint with a POST request and JSON body to get predictions."
+
 
 if __name__ == '__main__':
-    app.run(debug=False,host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0')
