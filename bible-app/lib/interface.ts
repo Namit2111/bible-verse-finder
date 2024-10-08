@@ -1,4 +1,4 @@
 export interface VerseSimilarity {
-	verse: string;
-	similarity: number;
+	user_input: string;
+	results: [string, number][];
 }
