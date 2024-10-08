@@ -47,6 +47,20 @@ Welcome to the **Bible Verse Finder**! This repository contains code to parse an
 
 3. Enter a theme to find similar Bible verses!
 
+### Installing the frontend (Next.Js)
+1. Change directory to the `bible-app` folder
+    ```sh
+    cd bible-app
+    ```
+
+2. Run `npm install` inside the folder
+
+3. Navigate to `http://localhost:3000`
+
+4. Start the server as instructed above
+
+5. Enter a theme to find similar Bible verses!
+
 __OR__ 
 
 [TRY IT OUT! ⭐✝️](https://bible-verse-finder-1.onrender.com/)
