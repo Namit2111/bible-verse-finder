@@ -15,10 +15,14 @@ export default function LandingPage() {
         setShowVerseSearch(true);
     };
 
+    const handleTabClick = () => {
+        setShowVerseSearch(true); // Show the VerseSearch component when the tab is clicked
+    };
+
     return (
-        <div className="bg-green-100 flex flex-col min-h-screen items-center justify-center p-8 gap-8 max-sm:m-auto">
+        <div className="bg-green-100 flex flex-col min-h-screen items-center justify-center gap-8 max-sm:m-auto">
             <div className="w-full justify-center flex mb-3">
-                <h1 className="text-4xl font-bold tracking-tight text-green-500 sm:text-6xl">
+                <h1 className="text-3xl font-bold tracking-tight text-green-500 sm:text-6xl">
                     Versify
                 </h1>
             </div>
@@ -32,7 +36,7 @@ export default function LandingPage() {
             </nav>
 
             <div className="text-center w-full">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-600 sm:text-6xl">
+                <h1 className="text-3xl font-bold tracking-tight text-gray-600 sm:text-4xl">
                     Find similar verses in an instant. Just enter keywords.
                 </h1>
             </div>
