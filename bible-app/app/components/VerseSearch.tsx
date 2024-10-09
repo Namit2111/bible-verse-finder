@@ -41,7 +41,7 @@ export default function VerseSearch() {
 		const filteredVerses = verses && verses.results.filter((result) => result[1] > 0);
 	
     return (
-        <div className="flex flex-col min-h-screen items-center justify-center p-8 gap-8 max-sm:m-auto">
+        <div className="flex flex-col min-h-screen items-center justify-center p-3 gap-8 max-sm:m-auto">
             <h1 className="text-2xl sm:text-4xl font-extrabold sm:font-bold text-center text-siteColor">
                 Bible Verse Similarity
             </h1>
