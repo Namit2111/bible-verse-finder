@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
+// import { RainbowButton } from "./rainbow-buton";
+import { RainbowButton } from "./rainbow-button";
 
 export default function VerseSearch() {
     const [userInput, setUserInput] = useState("");
@@ -33,7 +35,7 @@ export default function VerseSearch() {
 				setVerses(data);
 				setUserInput("");
 				setError("");
-				} catch (error) {
+				} catch  {
 					setError('An error occurred while fetching data');
 				}					
     };
@@ -55,19 +57,19 @@ export default function VerseSearch() {
                     className="p-2 border border-gray-300 rounded w-full mb-8 text-lg"
 								/>
 								{error && <p className="text-red-500 mt-[-6px]">{error}</p>}
-                <button
+                <RainbowButton
                     type="submit"
-                    className="bg-siteColor/95 text-white py-3 px-6 w-full rounded mt-4 hover:bg-siteColor text-center text-lg max-xs:text-sm font-semibold">
+                    className=" w-full hover:opacity-95 ">
                     Find Similar Verses
-                </button>						
+                </RainbowButton>						
             </form>
 						{/* Display results if any are available */}
 						{verses && (
 								<div className="flex flex-col items-center gap-4">
-										<h2 className="text-xl sm:text-3xl font-bold text-gray-700">Results for "{verses.user_input}"</h2>
+										<h2 className="text-xl sm:text-3xl font-bold text-gray-700">Results for &quot;{verses.user_input}&quot;</h2>
 										{filteredVerses?.length === 0 ? (
 												<p className="text-sm sm:text-xl font-bold text-gray-600 text-center">
-												Your search returned void 😅, good news God's word never does! Try another search 🔎 
+												Your search returned void 😅, good news God&apos;s word never does! Try another search 🔎 
 												</p>
 										) :
 												<ul className="flex flex-col gap-4 w-full sm:w-[80%] text-gray-600">
