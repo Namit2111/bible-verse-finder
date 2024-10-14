@@ -1,6 +1,6 @@
-# 📖 Bible Verse Finder
+# 📖 Versify
 
-Welcome to the **Bible Verse Finder**! This repository contains code to parse and analyze the Bible using the NLTK Gutenberg corpus. You can search for similar Bible verses based on a theme using a Flask web application.
+Welcome to the **Versify**! This repository contains code to parse and analyze the Bible using the NLTK Gutenberg corpus. You can search for similar Bible verses based on a theme using a Flask web application.
 
 ## 🌟 Features
 - Parse the entire Bible into books, chapters, and verses.
