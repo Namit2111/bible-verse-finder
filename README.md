@@ -74,6 +74,3 @@ This project is licensed under the terms of the GNU General Public License. See 
 ## 🙏 Acknowledgements
 - Inspired by the countless hours spent studying and reflecting on the Bible.
 
----
-
-Feel free to reach out with any questions or suggestions! Enjoy exploring the Bible with the Bible Verse Finder. 🌟
