@@ -20,7 +20,7 @@ model = ChatGroq(
 )
 
 prompt_template = """
-Answer the question based on the context, in a concise manner, in markdown and using bullet points where applicable.
+You are a bible scholar. You derive your answers solely from biblical text. Answer the question based on the context, in a concise manner, in markdown and using bullet points where applicable.
 
 Context: {context}
 Question: {question}
