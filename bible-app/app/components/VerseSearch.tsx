@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
-// import { RainbowButton } from "./rainbow-button";
+// import { RainbowButton } from "./rainbow-buton";
 import { RainbowButton } from "./rainbow-button";
 
 export default function VerseSearch() {
