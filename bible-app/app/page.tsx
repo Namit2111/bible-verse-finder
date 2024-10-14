@@ -1,4 +1,4 @@
-import VerseSearch from "./components/VerseSearch";
+import VerseSearch from "../components/VerseSearch";
 
 export default function Home() {
     return (
