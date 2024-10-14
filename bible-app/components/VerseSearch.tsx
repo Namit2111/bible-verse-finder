@@ -4,6 +4,7 @@ import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "./rainbow-button";
 
+//makes similarity percentage more readable
 function decimalToPercentage(decimal: number): string {
     return (decimal * 100).toFixed(1) + '%';
 }
