@@ -18,7 +18,10 @@ export async function POST(request: Request) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch  {
-    return NextResponse.json({ error: 'An error occurred while fetching data' }, { status: 500 });
-  }
+  } catch (error:any ) {
+    return NextResponse.json({ 
+        error: 'An error occurred while fetching data', 
+        details: error.message 
+    }, { status: 500 });
+}
 }
