@@ -1,8 +1,0 @@
-groq
-langchain-groq
-langchain_community
-python-dotenv
-pymongo
-qdrant-client
-langchain_google_genai
-fitz
