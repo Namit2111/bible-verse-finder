@@ -1,0 +1,4 @@
+venv
+test.py
+bible-app/yarn.lock
+.env
