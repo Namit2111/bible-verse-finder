@@ -23,7 +23,7 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
 1. Clone this repository:
     ```sh
     git clone https://github.com/Namit2111/bible-verse-finder.git
-    cd bible-verse-finder
+    cd bible-verse-finder/backend
     ```
 
 2. Install the required packages:
@@ -48,9 +48,9 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
 3. Enter a theme to find similar Bible verses!
 
 ### Installing the frontend (Next.Js)
-1. Change directory to the `bible-app` folder
+1. Change directory to the `frontend` folder
     ```sh
-    cd bible-app
+    cd frontend
     ```
 
 2. Run `npm install` inside the folder
