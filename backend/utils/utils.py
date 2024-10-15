@@ -1,8 +1,9 @@
 import pickle
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+import nltk
+nltk.download('gutenberg')
 from nltk.corpus import gutenberg
-
 # Load the KMeans model and TF-IDF vectorizer
 with open('models/kmeans_model.pkl', 'rb') as f:
     loaded_km = pickle.load(f)
