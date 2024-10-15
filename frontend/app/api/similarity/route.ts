@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   const { userInput } = await request.json();
   try {
     // Make a request to the Flask app
-    const response = await fetch('http://127.0.0.1:5000/api/similarity', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/api/similarity', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
