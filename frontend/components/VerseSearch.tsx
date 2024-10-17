@@ -1,19 +1,18 @@
 "use client";
-
 import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "./rainbow-button";
+import { Copy, Check } from 'lucide-react';
 
-//makes similarity percentage more readable
 function decimalToPercentage(decimal: number): string {
     return (decimal * 100).toFixed(1) + '%';
 }
-
 
 export default function VerseSearch() {
   const [userInput, setUserInput] = useState("");
   const [verses, setVerses] = useState<VerseSimilarity>();
   const [error, setError] = useState<string>();
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -30,12 +29,10 @@ export default function VerseSearch() {
         },
         body: JSON.stringify({ userInput }),
       });
-
       if (!response.ok) {
         setError("Failed to fetch data");
         return;
       }
-
       const data = await response.json();
       setVerses(data);
       setUserInput("");
@@ -43,6 +40,13 @@ export default function VerseSearch() {
     } catch {
       setError("An error occurred while fetching data");
     }
+  };
+
+  const copyToClipboard = (text: string, index: number) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000); // Reset after 2 seconds
+    });
   };
 
   const filteredVerses =
@@ -66,11 +70,10 @@ export default function VerseSearch() {
           className="p-2 border border-gray-300 rounded w-full mb-8 text-lg"
         />
         {error && <p className="text-red-500 mt-[-6px]">{error}</p>}
-        <RainbowButton type="submit" className=" w-full hover:opacity-95 ">
+        <RainbowButton type="submit" className="w-full hover:opacity-95">
           Find Similar Verses
         </RainbowButton>
       </form>
-      {/* Display results if any are available */}
       {verses && (
         <div className="flex flex-col items-center gap-4">
           <h2 className="text-xl sm:text-3xl font-bold text-gray-700">
@@ -85,16 +88,31 @@ export default function VerseSearch() {
             <ul className="flex flex-col gap-4 w-full sm:w-[80%] text-gray-600">
               {filteredVerses?.map((result, index) => (
                 <li key={index} className="p-4 bg-white rounded-xl shadow">
-                  <p className="text-md font-semibold mb-2">
-                    <span className="text-siteColor font-bold">Verse:</span> 1
-                    John {result[0]}
-                  </p>
-                  <p className="text-md font-semibold">
-                    <span className="text-siteColor font-bold">
-                      Similarity:
-                    </span>{" "}
-                    {decimalToPercentage(result[1])}
-                  </p>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <p className="text-md font-semibold mb-2">
+                        <span className="text-siteColor font-bold">Verse:</span> 1
+                        John {result[0]}
+                      </p>
+                      <p className="text-md font-semibold">
+                        <span className="text-siteColor font-bold">
+                          Similarity:
+                        </span>{" "}
+                        {decimalToPercentage(result[1])}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => copyToClipboard(`1 John ${result[0]} - Similarity: ${decimalToPercentage(result[1])}`, index)}
+                      className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
+                      aria-label="Copy to clipboard"
+                    >
+                      {copiedIndex === index ? (
+                        <Check className="w-5 h-5 text-green-500" />
+                      ) : (
+                        <Copy className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
