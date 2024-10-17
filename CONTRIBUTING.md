@@ -104,20 +104,8 @@ Currently, the project is built using the following technologies:
 - **Frontend**: HTML, CSS, JavaScript
 - **Machine Learning**: Python libraries such as scikit-learn
   
-**Note:** We are considering a transition to **Next.js** for the frontend.
+**Note:** After 2 weeks with no commits or messages,you will be removed from
+your assigned issue.
 
-## Moving to Next.js
-
-We have opened an issue discussing the potential migration of the frontend from static HTML to **Next.js**. If you are familiar with **React** or **Next.js**, feel free to contribute by:
-- Helping with the transition plan
-- Writing new components in Next.js
-- Updating the frontend while keeping compatibility with the Flask backend
-
-## Additional Resources
-
-- [Flask Documentation](https://flask.palletsprojects.com/en/latest/)
-- [Python PEP 8 Style Guide](https://www.python.org/dev/peps/pep-0008/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Black Code Formatter](https://black.readthedocs.io/en/stable/)
 
 Thank you for contributing to **Bible-Verse-Finder**!
