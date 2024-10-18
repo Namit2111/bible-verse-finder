@@ -66,7 +66,7 @@ const translations = [
 ]
 
 export default function TranslationSelect() {
-    const [_, setTranslation] = useQueryState('translation');
+    const [translation, setTranslation] = useQueryState('translation');
 
     return (
         <div className="w-full mb-3">
@@ -74,6 +74,7 @@ export default function TranslationSelect() {
 
             <Select
                 name="translations"
+                value={translation!}
                 onValueChange={setTranslation}
             >
                 <SelectTrigger className="border-gray-300">

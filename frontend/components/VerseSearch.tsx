@@ -2,17 +2,14 @@
 import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "./rainbow-button";
-import { Copy, Check } from 'lucide-react';
 import TranslationSelect from "./TranslationSelect";
 import SearchResultList from "./SearchResults";
-import { decimalToPercentage } from "@/utils/helpers";
 
 
 export default function VerseSearch() {
   const [userInput, setUserInput] = useState("");
   const [verses, setVerses] = useState<VerseSimilarity>();
   const [error, setError] = useState<string>();
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -42,12 +39,6 @@ export default function VerseSearch() {
     }
   };
 
-  const copyToClipboard = (text: string, index: number) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 2000); // Reset after 2 seconds
-    });
-  };
 
   const filteredVerses =
     verses && verses.results.filter((result) => result[1] > 0);
