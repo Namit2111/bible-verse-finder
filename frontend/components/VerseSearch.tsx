@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { VerseSimilarity } from "@/lib/interface";
+import { results, VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "./rainbow-button";
 import { Copy, Check } from 'lucide-react';
 
@@ -13,6 +13,7 @@ export default function VerseSearch() {
   const [verses, setVerses] = useState<VerseSimilarity>();
   const [error, setError] = useState<string>();
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [display, setDisplay] = useState<number>(5);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -22,7 +23,7 @@ export default function VerseSearch() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/similarity", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/similarity`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,6 +36,7 @@ export default function VerseSearch() {
       }
       const data = await response.json();
       setVerses(data);
+      setDisplay(5); // Reset display count when new search is performed
       setUserInput("");
       setError("");
     } catch {
@@ -49,8 +51,14 @@ export default function VerseSearch() {
     });
   };
 
+  function handleLoadMore() {
+    setDisplay(prevDisplay => Math.min(prevDisplay + 5, 20));
+  }
+
   const filteredVerses =
     verses && verses.results.filter((result) => result[1] > 0);
+
+  const showLoadMore = filteredVerses && filteredVerses.length > display && display < 20;
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center p-8 gap-8 max-sm:m-auto">
@@ -85,37 +93,47 @@ export default function VerseSearch() {
               does! Try another search 🔎
             </p>
           ) : (
-            <ul className="flex flex-col gap-4 w-full sm:w-[80%] text-gray-600">
-              {filteredVerses?.map((result, index) => (
-                <li key={index} className="p-4 bg-white rounded-xl shadow">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-md font-semibold mb-2">
-                        <span className="text-siteColor font-bold">Verse:</span> 1
-                        John {result[0]}
-                      </p>
-                      <p className="text-md font-semibold">
-                        <span className="text-siteColor font-bold">
-                          Similarity:
-                        </span>{" "}
-                        {decimalToPercentage(result[1])}
-                      </p>
+            <>
+              <ul className="flex flex-col gap-4 w-full sm:w-[80%] text-gray-600">
+                {filteredVerses?.slice(0, display)?.map((result, index) => (
+                  <li key={index} className="p-4 bg-white rounded-xl shadow">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-md font-semibold mb-2">
+                          <span className="text-siteColor font-bold">Verse:</span> 1
+                          John {result[0]}
+                        </p>
+                        <p className="text-md font-semibold">
+                          <span className="text-siteColor font-bold">
+                            Similarity:
+                          </span>{" "}
+                          {decimalToPercentage(result[1])}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => copyToClipboard(`1 John ${result[0]} - Similarity: ${decimalToPercentage(result[1])}`, index)}
+                        className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
+                        aria-label="Copy to clipboard"
+                      >
+                        {copiedIndex === index ? (
+                          <Check className="w-5 h-5 text-green-500" />
+                        ) : (
+                          <Copy className="w-5 h-5" />
+                        )}
+                      </button>
                     </div>
-                    <button
-                      onClick={() => copyToClipboard(`1 John ${result[0]} - Similarity: ${decimalToPercentage(result[1])}`, index)}
-                      className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
-                      aria-label="Copy to clipboard"
-                    >
-                      {copiedIndex === index ? (
-                        <Check className="w-5 h-5 text-green-500" />
-                      ) : (
-                        <Copy className="w-5 h-5" />
-                      )}
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+              {showLoadMore && (
+                <button 
+                  onClick={handleLoadMore} 
+                  className="border-solid bg-siteColor m-[10px] p-[10px] text-stone-50 rounded-md hover:opacity-90 transition-colors"
+                >
+                  See More
+                </button>
+              )}
+            </>
           )}
         </div>
       )}
