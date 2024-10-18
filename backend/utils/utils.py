@@ -1,18 +1,14 @@
-from flask import Flask, request, render_template, jsonify
 import pickle
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import nltk
 nltk.download('gutenberg')
 from nltk.corpus import gutenberg
-
-app = Flask(__name__)
-
 # Load the KMeans model and TF-IDF vectorizer
-with open('kmeans_model.pkl', 'rb') as f:
+with open('models/kmeans_model.pkl', 'rb') as f:
     loaded_km = pickle.load(f)
 
-with open('vectorizer.pkl', 'rb') as f:
+with open('models/vectorizer.pkl', 'rb') as f:
     loaded_vectorizer = pickle.load(f)
 
 # Load and preprocess the Bible data
@@ -51,31 +47,3 @@ def get_similar_verses(user_input):
     results = [(cluster_verses[i], similarities[i]) for i in top_indices]
     
     return results
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        user_input = request.form['user_input']
-        results = get_similar_verses(user_input)
-
-        return render_template('index.html', results=results, user_input=user_input)
-
-    return render_template('index.html', results=None)
-
-@app.route('/api/similarity', methods=['POST'])
-def similarity():
-    data = request.json
-    user_input = data.get('user_input')
-    
-    if not user_input:
-        return jsonify({"error": "No input provided"}), 400
-    
-    results = get_similar_verses(user_input)
-    
-    return jsonify({
-        "user_input": user_input,
-        "results": results
-    })
-
-if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
