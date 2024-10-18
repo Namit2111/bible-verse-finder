@@ -63,7 +63,7 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
 
 __OR__ 
 
-[TRY IT OUT! ⭐✝️](https://bible-verse-finder-1.onrender.com/)
+[TRY IT OUT! ⭐✝️](https://bible-verse-finder.vercel.app/)
 
 ## 🤝 Contributing
 Contributions are welcome! Please read the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
