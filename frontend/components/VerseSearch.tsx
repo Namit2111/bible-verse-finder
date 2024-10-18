@@ -3,10 +3,10 @@ import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "./rainbow-button";
 import { Copy, Check } from 'lucide-react';
+import TranslationSelect from "./TranslationSelect";
+import SearchResultList from "./SearchResults";
+import { decimalToPercentage } from "@/utils/helpers";
 
-function decimalToPercentage(decimal: number): string {
-    return (decimal * 100).toFixed(1) + '%';
-}
 
 export default function VerseSearch() {
   const [userInput, setUserInput] = useState("");
@@ -67,8 +67,10 @@ export default function VerseSearch() {
           value={userInput}
           onChange={(e) => handleInputChange(e)}
           required
-          className="p-2 border border-gray-300 rounded w-full mb-8 text-lg"
+          className="p-2 border border-gray-300 rounded w-full mb-3 text-lg"
         />
+
+        <TranslationSelect/>
         {error && <p className="text-red-500 mt-[-6px]">{error}</p>}
         <RainbowButton type="submit" className="w-full hover:opacity-95">
           Find Similar Verses
@@ -84,39 +86,10 @@ export default function VerseSearch() {
               Your search returned void 😅, good news God&apos;s word never
               does! Try another search 🔎
             </p>
-          ) : (
-            <ul className="flex flex-col gap-4 w-full sm:w-[80%] text-gray-600">
-              {filteredVerses?.map((result, index) => (
-                <li key={index} className="p-4 bg-white rounded-xl shadow">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-md font-semibold mb-2">
-                        <span className="text-siteColor font-bold">Verse:</span> 1
-                        John {result[0]}
-                      </p>
-                      <p className="text-md font-semibold">
-                        <span className="text-siteColor font-bold">
-                          Similarity:
-                        </span>{" "}
-                        {decimalToPercentage(result[1])}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => copyToClipboard(`1 John ${result[0]} - Similarity: ${decimalToPercentage(result[1])}`, index)}
-                      className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
-                      aria-label="Copy to clipboard"
-                    >
-                      {copiedIndex === index ? (
-                        <Check className="w-5 h-5 text-green-500" />
-                      ) : (
-                        <Copy className="w-5 h-5" />
-                      )}
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          ) : 
+          <SearchResultList searchResults={filteredVerses!} />
+          
+          }
         </div>
       )}
     </div>

@@ -8,4 +8,8 @@ export function extractBibleVerseInfo(verseString: string): string {
 
     return chapterAndVerse;
 }
+
+export function decimalToPercentage(decimal: number): string {
+    return (decimal * 100).toFixed(1) + '%';
+}
   
