@@ -28,7 +28,7 @@ export default function VerseSearch() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userInput }),
+        body: JSON.stringify({ user_input:userInput }),
       });
       if (!response.ok) {
         setError("Failed to fetch data");

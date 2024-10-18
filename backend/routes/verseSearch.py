@@ -15,7 +15,7 @@ CORS(bp)  # This will enable CORS for all routes in this blueprint
 @bp.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        user_input = request.form['userInput']
+        user_input = request.form['user_input']
         results = get_similar_verses(user_input)
         return render_template('index.html', results=results, user_input=user_input)
     return render_template('index.html', results=None)
@@ -24,7 +24,7 @@ def index():
 @bp.route('/api/similarity', methods=['POST'])
 def similarity():
     data = request.json
-    user_input = data.get('userInput')
+    user_input = data.get('user_input')
     
     if not user_input:
         return jsonify({"error": "No input provided"}), 400
