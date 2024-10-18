@@ -1,7 +1,15 @@
 from flask import Blueprint, request, render_template, jsonify
+from flask_cors import CORS  # Import CORS
 from utils.utils import get_similar_verses
 
+
+
+
 bp = Blueprint('verseSearch', __name__)
+CORS(bp, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
+# Enable CORS for the blueprint (you can also apply it to the app)
+CORS(bp)  # This will enable CORS for all routes in this blueprint
 
 # Route for the home page with form submission
 @bp.route('/', methods=['GET', 'POST'])
