@@ -69,12 +69,12 @@ export default function TranslationSelect() {
     const [translation, setTranslation] = useQueryState('translation');
 
     return (
-        <div className="w-full mb-3">
-            <label htmlFor="translations" className="hidden text-sm font-medium text-gray-900">Translations</label>
+        <div className="w-full mb-3 flex flex-col items-center gap-2">
+            <label htmlFor="translations" className="text-xl font-bold text-gray-700">Translation</label>
 
             <Select
                 name="translations"
-                value={translation!}
+                value={translation ?? undefined}
                 onValueChange={setTranslation}
             >
                 <SelectTrigger className="border-gray-300">
