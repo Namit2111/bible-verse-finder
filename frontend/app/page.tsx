@@ -1,9 +1,12 @@
+import { Suspense } from "react";
 import VerseSearch from "../components/VerseSearch";
 
 export default function Home() {
     return (
-        <div className="min-h-screen">
-            <VerseSearch />
-        </div>
+        <Suspense>
+            <div className="min-h-screen">
+                <VerseSearch />
+            </div>
+        </Suspense>
     );
 }
