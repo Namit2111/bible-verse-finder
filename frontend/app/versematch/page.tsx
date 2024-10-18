@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { VerseSimilarity } from "@/lib/interface";
-import { RainbowButton } from "./rainbow-button";
+import { RainbowButton } from "@/components/rainbow-button";
 import { Copy, Check } from 'lucide-react';
 
 function decimalToPercentage(decimal: number): string {
@@ -59,7 +60,7 @@ export default function VerseSearch() {
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-2 bg-white p-8 rounded-xl shadow-xl w-full sm:w-[32rem]"
+        className="flex flex-col items-center gap-2 bg-white p-8 pb-3 rounded-xl shadow-xl w-full sm:w-[32rem]"
       >
         <p className="text-xl font-bold text-gray-700">Enter a theme:</p>
         <input
@@ -72,7 +73,13 @@ export default function VerseSearch() {
         {error && <p className="text-red-500 mt-[-6px]">{error}</p>}
         <RainbowButton type="submit" className="w-full hover:opacity-95">
           Find Similar Verses
-        </RainbowButton>
+				</RainbowButton>
+				<Link
+					href="/"
+					className="font-bold mt-2 text-gray-600 hover:text-siteColor hover:underline"
+				>
+					Go Home
+				</Link>
       </form>
       {verses && (
         <div className="flex flex-col items-center gap-4">
