@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "@/components/rainbow-button";
 import { Copy, Check } from 'lucide-react';
-import Header from "../../components/Header.tsx";
+import Header from "../../components/Header";
 function decimalToPercentage(decimal: number): string {
     return (decimal * 100).toFixed(1) + '%';
 }
