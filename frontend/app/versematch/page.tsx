@@ -79,11 +79,11 @@ export default function VerseSearch() {
       </form>
       {verses && (
         <div className="flex flex-col items-center gap-4">
-          <h2 className="text-xl sm:text-3xl font-bold text-gray-700">
+          <h2 className="text-xl sm:text-3xl font-bold text-white-700">
             Results for &quot;{verses.user_input}&quot;
           </h2>
           {filteredVerses?.length === 0 ? (
-            <p className="text-sm sm:text-xl font-bold text-gray-600 text-center">
+            <p className="text-sm sm:text-xl font-bold text-white-600 text-center">
               Your search returned void 😅, good news God&apos;s word never
               does! Try another search 🔎
             </p>
