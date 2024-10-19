@@ -23,7 +23,7 @@ const LandingPage = () => {
 								verses related to a theme.
 								<br /> Type in a theme and you get similar
 								verses from the Bible.
-								<br /> It's like having a personal Bible study
+								<br /> It&apos;s like having a personal Bible study
 								assistant at your fingertips.
 							</p>
 
