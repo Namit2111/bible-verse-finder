@@ -4,7 +4,7 @@ import Link from "next/link";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "@/components/rainbow-button";
 import { Copy, Check } from 'lucide-react';
-
+import Header from "../../components/Header.tsx";
 function decimalToPercentage(decimal: number): string {
     return (decimal * 100).toFixed(1) + '%';
 }
@@ -54,9 +54,12 @@ export default function VerseSearch() {
     verses && verses.results.filter((result) => result[1] > 0);
 
   return (
+    <div className="min-h-screen bg-black">
+			<Header />
     <div className="flex flex-col min-h-screen items-center justify-center p-8 gap-8 max-sm:m-auto">
+      
       <h1 className="text-2xl sm:text-4xl font-extrabold sm:font-bold text-center text-siteColor">
-        Bible Verse Similarity
+        Verse Match
       </h1>
       <form
         onSubmit={handleSubmit}
@@ -68,18 +71,12 @@ export default function VerseSearch() {
           value={userInput}
           onChange={(e) => handleInputChange(e)}
           required
-          className="p-2 border border-gray-300 rounded w-full mb-8 text-lg"
+          className="p-2 border border-gray-300 rounded w-full mb-6 text-lg"
         />
         {error && <p className="text-red-500 mt-[-6px]">{error}</p>}
-        <RainbowButton type="submit" className="w-full hover:opacity-95">
+        <RainbowButton type="submit" className="w-full mb-6 hover:opacity-95">
           Find Similar Verses
 				</RainbowButton>
-				<Link
-					href="/"
-					className="font-bold mt-2 text-gray-600 hover:text-siteColor hover:underline"
-				>
-					Go Home
-				</Link>
       </form>
       {verses && (
         <div className="flex flex-col items-center gap-4">
@@ -126,6 +123,7 @@ export default function VerseSearch() {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 }

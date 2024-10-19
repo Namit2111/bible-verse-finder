@@ -8,7 +8,7 @@ import { NavMenu } from "@/lib/interface";
 const navMenu = [
 	// {
 	// 	name: "About Us",
-	// 	link: "/", // this should be changed when the "About Us" page is implemented
+	// 	link: "/about", // this should be changed when the "About Us" page is implemented
 	// },
 	{
 		name: "Verse Match",
