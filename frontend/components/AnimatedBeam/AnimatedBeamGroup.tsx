@@ -117,9 +117,9 @@ export const AnimatedBeamGroup = () => {
 const Icons = {
 	bible: () => <img src="/images/bible.svg" alt="Bible" />,
 	maleTech: () => (
-		<img src="/images/technologist.svg" alt="male-technologist" />
+		<img src="/images/man-comp.jpg" width="800px" height="800px" alt="male-technologist" />
 	),
 	femaleTech: () => (
-		<img src="/images/woman-technologist.svg" alt="female-technologist" />
+		<img src="/images/woman-comp.jpg" width="800px" height="800px" alt="female-technologist" />
 	),
 };
