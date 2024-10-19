@@ -66,18 +66,19 @@ const translations = [
 ]
 
 export default function TranslationSelect() {
-    const [_, setTranslation] = useQueryState('translation');
+    const [translation, setTranslation] = useQueryState('translation');
 
     return (
-        <div className="w-full mb-3">
-            <label htmlFor="translations" className="hidden text-sm font-medium text-gray-900">Translations</label>
+        <div className="flex flex-col items-center mb-3 gap-3 w-full">
+            <label htmlFor="translations" className="text-xl font-bold text-gray-700">Translation</label>
 
             <Select
                 name="translations"
+                value={translation ?? undefined}
                 onValueChange={setTranslation}
             >
                 <SelectTrigger className="border-gray-300">
-                    <SelectValue placeholder="Select a Translation" />
+                    <SelectValue className="py-2" placeholder="Select a Translation" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="default">
