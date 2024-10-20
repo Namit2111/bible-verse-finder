@@ -41,7 +41,7 @@ def get_similar_verses(user_input):
     similarities = cosine_similarity(user_input_vector, cluster_vectors).flatten()
 
     # Get the indices of the top 5 most similar verses
-    top_indices = similarities.argsort()[-5:][::-1]
+    top_indices = similarities.argsort()[-20:][::-1]
 
     # Prepare the results
     results = [(cluster_verses[i], similarities[i]) for i in top_indices]
