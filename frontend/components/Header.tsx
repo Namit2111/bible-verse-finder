@@ -6,10 +6,10 @@ import Image from "next/image";
 import { NavMenu } from "@/lib/interface";
 
 const navMenu = [
-	// {
-	// 	name: "About Us",
-	// 	link: "/about", // this should be changed when the "About Us" page is implemented
-	// },
+	{
+		name: "About Us",
+		link: "/about",
+	},
 	{
 		name: "Verse Match",
 		link: "/versematch",
@@ -51,7 +51,7 @@ export default function Header() {
 					<nav
 						className={`${expanded ? "max-md:flex max-md:flex-col max-md:basis-full max-md:pb-4 max-md:space-y-6" : "hidden"} md:ml-10 md:mr-auto md:space-x-10 lg:ml-20 lg:space-x-12 md:flex md:items-center md:justify-start`}
 					>
-						<div className="max-md:bg-gray-900 max-md:p-3 max-md:-mt-10 max-md:rounded-md">
+						<div className="flex max-md:flex-col max-md:bg-gray-900 max-md:p-3 max-md:-mt-10 max-md:rounded-md max-md:gap-2 gap-8">
 							{navMenu.map((item: NavMenu, index) => (
 								<Link
 									key={index}
