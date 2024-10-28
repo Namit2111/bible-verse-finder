@@ -40,10 +40,12 @@ export default function Header() {
 							onClick={() => setExpanded(!expanded)}
 						>
 							<span aria-hidden="true">
-								<img
+								<Image
 									className="w-7 h-7 invert"
 									src="/images/menu.svg"
 									alt="Menu Icon"
+									width={100}
+									height={100}
 								/>
 							</span>
 						</button>

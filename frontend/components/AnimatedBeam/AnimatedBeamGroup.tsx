@@ -1,6 +1,7 @@
 "use client";
 
 import React, { forwardRef, useRef } from "react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "./AnimatedBeam";
@@ -115,11 +116,11 @@ export const AnimatedBeamGroup = () => {
 };
 
 const Icons = {
-	bible: () => <img src="/images/bible.svg" alt="Bible" />,
+	bible: () => <Image src="/images/bible.svg" alt="Bible" width={100} height={100} />,
 	maleTech: () => (
-		<img src="/images/man-comp.jpg" width="800px" height="800px" alt="male-technologist" />
+		<Image src="/images/man-comp.jpg" width={800} height={800} alt="male-technologist" />
 	),
 	femaleTech: () => (
-		<img src="/images/woman-comp.jpg" width="800px" height="800px" alt="female-technologist" />
+		<Image src="/images/woman-comp.jpg" width={800} height={800} alt="female-technologist" />
 	),
 };
