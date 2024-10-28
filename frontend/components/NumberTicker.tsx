@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { formatNumber } from "@/lib/formatNumber";
 
 export function NumberTicker({
   value,
@@ -37,14 +38,14 @@ export function NumberTicker({
     () =>
       springValue.on("change", (latest) => {
         if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat("en-US", {
+          ref.current.textContent = formatNumber(Intl.NumberFormat("en-US", {
             minimumFractionDigits: decimalPlaces,
             maximumFractionDigits: decimalPlaces,
-          }).format(Number(latest.toFixed(decimalPlaces)));
-        }
-      }),
+					}).format(+(latest.toFixed(decimalPlaces))));
+				}
+			}),
     [springValue, decimalPlaces],
-  );
+	);
 
   return (
     <span
