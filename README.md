@@ -68,7 +68,7 @@ __OR__
 ## 🤝 Contributing
 Contributions are welcome! Please read the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## For more helpful resources check out our - FAQ.md
+## 😊 For more helpful resources check out our - FAQ.md
 
 ## 📄 License
 This project is licensed under the terms of the GNU General Public License. See the [LICENSE.md](LICENSE.md) file for details.
