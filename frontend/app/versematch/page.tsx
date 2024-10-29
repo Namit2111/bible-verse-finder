@@ -65,7 +65,7 @@ export default function VerseSearch() {
     <div className="min-h-screen bg-black">
       <Header />
       <div className="flex flex-col items-center justify-center mt-20 gap-8 max-sm:m-auto">
-        <h1 className="text-2xl sm:text-4xl font-extrabold sm:font-bold text-center text-siteColor">
+        <h1 className="text-2xl sm:text-4xl font-extrabold sm:font-bold text-center text-white">
           Verse Match
         </h1>
         <form
