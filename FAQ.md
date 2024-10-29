@@ -1,7 +1,7 @@
 ## FAQ for Bible Verse Finder
 
 ### 1. What is Bible Verse Finder?
-Bible Verse Finder is an app that helps users search and find Bible verses based on specific keywords or themes, making it easy to locate relevant scripture quickly.
+Bible Verse Finder is an app that helps users search and find Bible verses based on specific keywords that might give a user many results (like love or light) or themes, making it easy to locate relevant scripture quickly.
 
 ### 2. How do I search for a verse?
 Simply enter keywords or themes into the search bar, and the app will return matching Bible verses.
@@ -10,7 +10,7 @@ Simply enter keywords or themes into the search bar, and the app will return mat
 Yes, you can refine searches by specifying a book or chapter to get results from a specific section of the Bible.
 
 ### 4. Is the app free to use?
-Yes, it’s completely free and open-source, so anyone can use it or contribute.
+Yes, it’s completely free and open-source, so anyone can use it or contribute to it afterward
 
 ### 5. How do I contribute to the project?
 You can contribute by improving documentation, fixing bugs, or suggesting new features. Check the Issues section on GitHub to find ways to help!
@@ -19,5 +19,5 @@ You can contribute by improving documentation, fixing bugs, or suggesting new fe
 Report any issues by opening a new issue in the GitHub repository. The maintainers will review and address it.
 
 ### 7. What technology is used in the project?
-Bible Verse Finder is built with Python, Flask, and additional libraries for functionality and search optimization.
+Bible Verse Finder is built with Next.js, Flask, and additional libraries for functionality and search optimization.
 
