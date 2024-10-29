@@ -1,7 +1,7 @@
 ## FAQ for Bible Verse Finder
 
 ### 1. What is Bible Verse Finder?
-Bible Verse Finder is an app that helps users search and find Bible verses based on specific keywords that might give a user many results (like love or light) or themes, making it easy to locate relevant scripture quickly.
+Bible Verse Finder is an app that helps users search and find Bible verses based on specific keywords such as (love or light) that might give a user many results or themes, making it easy to locate relevant scripture quickly.
 
 ### 2. How do I search for a verse?
 Simply enter keywords or themes into the search bar, and the app will return matching Bible verses.
