@@ -117,14 +117,14 @@ export default async function About() {
 							<div className="relative px-8 py-6 md:py-12 text-white bg-black/85 border border-transparent rounded-e-2xl max-md:rounded-2xl ">
 								<h1>Frontend</h1>
 								<h2> Languages & Frameworks </h2>
-								<p className="text-gray-400 my-4 max-sm:text-xs">HTML CSS JavaScript TypeScript React Next.js</p>
+								<p className="text-gray-400 my-4 max-sm:text-xs">HTML CSS Python TypeScript Next.js</p>
 								<h2> Libraries & Tools </h2>
 								<p className="text-gray-400 my-3 max-sm:text-xs">
-									React-DOM TailwindCSS PostCSS Lucide CLSx </p>
+									React TailwindCSS PostCSS Lucide CLSx </p>
 								<p className="text-gray-400 my-3 max-sm:text-xs">
 									RadixUI ESlint ESlint-config-next</p>
 								<h2> Utilities </h2>
-								<p className="text-gray-400 my-4 max-sm:text-xs">json NextResponse Vercel</p>
+								<p className="text-gray-400 my-4 max-sm:text-xs">JSON NextResponse Vercel</p>
 							</div>
 						</div>
 					</div>
