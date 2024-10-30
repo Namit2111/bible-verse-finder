@@ -90,8 +90,8 @@ export default async function About() {
 							<div className="absolute -inset-px bg-gradient-to-r from-cyan-400 to-cyan-900 rounded-s-2xl max-md:rounded-2xl"></div>
 							<div className="relative px-8 py-6 md:py-12 text-white bg-black/85 border border-transparent rounded-s-2xl max-md:rounded-2xl">
 								<h1>Backend</h1>
-								<h2>Frameworks </h2>
-								<p className="text-gray-400 my-3 max-sm:text-xs">Flask (Python)</p>
+								<h2>Languages & Frameworks</h2>
+								<p className="text-gray-400 my-3 max-sm:text-xs">Python Flask</p>
 								<h2>Python Libraries </h2>
 								<p className="text-gray-400 my-1 max-sm:text-xs">Blinker Click Colorama Flask Itsdangerous</p>
 								<p className="text-gray-400 my-1 max-sm:text-xs">Joblib MarkupSafe NLTK NumPy Regex</p>
