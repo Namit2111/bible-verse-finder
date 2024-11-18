@@ -1,5 +1,3 @@
-Here's a customized `CONTRIBUTING.md` file based on your project **bible-verse-finder**, incorporating the Flask, ML, and HTML stack with a mention of potentially moving to Next.js:
-
 # Contributing to Bible-Verse-Finder
 
 Thank you for your interest in contributing to **Bible-Verse-Finder**! We appreciate your help in making this project better. Please follow the guidelines below to ensure that the contribution process is clear and efficient.
@@ -19,7 +17,7 @@ Thank you for your interest in contributing to **Bible-Verse-Finder**! We apprec
 ## How Can I Contribute?
 
 You can contribute to this project in several ways:
-- Add Github username to `contributing.md`
+- Add Github username to `contributors.md`
 - Reporting bugs
 - Suggesting new features or improvements
 - Writing code (Flask, Machine Learning, HTML)
