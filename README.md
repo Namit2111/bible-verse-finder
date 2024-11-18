@@ -75,6 +75,7 @@ This project is licensed under the terms of the GNU General Public License. See 
 Contributions are welcome! Please read the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## ❤️ Special Thanks to our Contributors! 
+
 <a href="https://github.com/Namit2111/bible-verse-finder/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Namit2111/bible-verse-finder" />
 </a>
