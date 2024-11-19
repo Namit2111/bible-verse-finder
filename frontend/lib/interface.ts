@@ -29,3 +29,9 @@ export interface AnimatedBeamProps {
 	endXOffset?: number;
 	endYOffset?: number;
 }
+
+export type RepoData = {
+	totalCommits: number;
+	totalContributors: number;
+	totalLinesOfCode: number;
+};
