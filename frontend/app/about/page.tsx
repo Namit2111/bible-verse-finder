@@ -124,7 +124,7 @@ export default function About() {
 								<div className="absolute -inset-px bg-gradient-to-r from-cyan-900 to-purple-800 max-md:rounded-2xl"></div>
 								<div className="relative px-8 py-6 md:py-13 text-black/90 bg-black/85 border border-transparent max-md:rounded-2xl">
 									<IconCloud iconSlugs={[
-										'tqdm', 'dotenv', 'langchain', 'numpy', 'regex', 'scikit-learn',
+										'tqdm', 'dotenv', 'langchain', 'numpy', 'scikit-learn',
 										'scipy', 'jinja', 'json', 'nextdotjs', 'eslint', 'radixui',
 										'lucide', 'postcss', 'tailwindcss', 'python', 'flask',
 										'html5', 'css3', 'javascript', 'react', 'typescript', 'vercel',
