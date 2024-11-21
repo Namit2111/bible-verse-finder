@@ -2,7 +2,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import Header from "@/components/Header";
 import { NumberTicker } from "@/components/NumberTicker";
-import { getRepoDetails } from "@/lib/getRepoDetails";
+import { getRepoDetails, isAnyRepoDetailDefault } from "@/lib/getRepoDetails";
 import IconCloud from "@/components/ui/icon-cloud";
 import { RepoData } from "@/lib/interface";
 
@@ -16,7 +16,10 @@ export default function About() {
 	useEffect(() => {
 		const cachedData = sessionStorage.getItem('repoData');
 		if (cachedData) {
-			setRepoData(JSON.parse(cachedData));
+			const data = JSON.parse(cachedData);
+			if (isAnyRepoDetailDefault(data)) {
+				fetchRepoData()
+			} else setRepoData(data);
 		} else {
 			fetchRepoData();
 		}
@@ -149,7 +152,7 @@ export default function About() {
 						</div>
 					</div>
 				</section>
-				</div>
-			</Suspense>
+			</div>
+		</Suspense>
 	);
 }
