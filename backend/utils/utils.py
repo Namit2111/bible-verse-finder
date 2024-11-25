@@ -11,7 +11,7 @@ with open('models/kmeans_model.pkl', 'rb') as f:
 
 
 # Load the Bible data from bible.json
-with open('./bible.json', 'r') as f:
+with open('utils/bible.json', 'r') as f:
     bible_data = json.load(f)
 
 # Filter out verses from the "Song of Solomon"
