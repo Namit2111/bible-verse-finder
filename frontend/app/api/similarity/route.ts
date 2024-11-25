@@ -11,7 +11,6 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({ user_input: userInput }),
     });
-
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

@@ -104,16 +104,19 @@
         {% if results %}
             <h2>Results for "{{ user_input }}"</h2>
             {% set valid_results = [] %}
-            {% for verse, similarity in results %}
-                {% if similarity > 0 %}
-                    {% set _ = valid_results.append((verse, similarity)) %}
+            {% for result in results %}
+                {% if result.similarity > 0 %}
+                    {% set _ = valid_results.append(result) %}
                 {% endif %}
             {% endfor %}
 
             {% if valid_results %}
                 <ul>
-                    {% for verse, similarity in valid_results %}
-                        <li><strong>Verse: </strong>  1 John  {{ verse }} <br> <strong>Similarity:</strong> {{ similarity }}</li>
+                    {% for result in valid_results %}
+                        <li>
+                            <strong>Verse:</strong> {{ result.book_name }} {{ result.chapter }}:{{ result.verse_number }} - {{ result.verse }} <br>
+                            <strong>Similarity:</strong> {{ result.similarity }}
+                        </li>
                     {% endfor %}
                 </ul>
             {% else %}

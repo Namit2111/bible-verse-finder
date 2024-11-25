@@ -57,12 +57,12 @@ export default function VerseSearch() {
   }
 
   const filteredVerses =
-    verses && verses.results.filter((result) => result[1] > 0);
+    verses && verses.results.filter((result) => result.similarity > 0);
 
   const showLoadMore = filteredVerses && filteredVerses.length > display && display < 20;
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-gradient-to-b from-black to-orange-300">
       <Header />
       <div className="flex flex-col items-center justify-center mt-20 gap-8 max-sm:m-auto">
         <h1 className="text-2xl sm:text-4xl font-extrabold sm:font-bold text-center text-white">
@@ -103,18 +103,18 @@ export default function VerseSearch() {
                       <div className="flex justify-between items-start">
                         <div>
                           <p className="text-md font-semibold mb-2">
-                            <span className="text-siteColor font-bold">Verse:</span> 1
-                            John {result[0]}
+                            <span className="text-siteColor font-bold"> </span> 
+                            {result.book_name} {result.chapter}:{result.verse_number} - {result.verse}
                           </p>
                           <p className="text-md font-semibold">
                             <span className="text-siteColor font-bold">
                               Similarity:
                             </span>{" "}
-                            {decimalToPercentage(result[1])}
+                            {decimalToPercentage(result.similarity)}
                           </p>
                         </div>
                         <button
-                          onClick={() => copyToClipboard(`1 John ${result[0]} - Similarity: ${decimalToPercentage(result[1])}`, index)}
+                          onClick={() => copyToClipboard(`${result.book_name} ${result.chapter} : ${result.verse_number} ${result.verse[0]} - Similarity: ${decimalToPercentage(result.similarity)}`, index)}
                           className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
                           aria-label="Copy to clipboard"
                         >
