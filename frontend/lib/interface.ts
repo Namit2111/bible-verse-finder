@@ -1,9 +1,19 @@
 import { RefObject } from "react";
 
-export interface VerseSimilarity {
-	user_input: string;
-	results: [string, number][];
+
+export interface VerseResult {
+    verse: string;
+    book_name: string;
+    chapter: number;
+    verse_number: number;
+    similarity: number;
 }
+
+export interface VerseSimilarity {
+    user_input: string;
+    results: VerseResult[];
+}
+
 
 export type NavMenu = {
 	name: string;
