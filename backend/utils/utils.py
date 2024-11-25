@@ -15,7 +15,7 @@ with open('utils/bible.json', 'r') as f:
     bible_data = json.load(f)
 
 # Filter out verses from the "Song of Solomon"
-filtered_verses = [verse for verse in bible_data['verses'] if verse['book_name'] != 'Song of Solomon']
+filtered_verses = [verse for verse in bible_data['verses'] if verse['book_name'] == 'Psalms' or verse['book_name'] == 'John' or verse['book_name'] == 'Romans' or verse['book_name'] == 'Ephesians']
 
 # Extract text, book name, chapter, and verse
 verses = [verse['text'] for verse in filtered_verses]
