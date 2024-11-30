@@ -14,6 +14,10 @@ const navMenu = [
 		name: "Verse Match",
 		link: "/versematch",
 	},
+	{
+		name: "Sign Up",
+		link: "/signup",
+	},
 ];
 
 export default function Header() {
