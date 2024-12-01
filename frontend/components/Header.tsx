@@ -14,10 +14,6 @@ const navMenu = [
 		name: "Verse Match",
 		link: "/versematch",
 	},
-	{
-		name: "Sign Up",
-		link: "/signup",
-	},
 ];
 
 export default function Header() {
@@ -69,6 +65,14 @@ export default function Header() {
 							))}
 						</div>
 					</nav>
+					<div className="ml-auto">
+						<Link
+							href="/signup"
+							className="text-lg font-bold text-gray-400 transition-all duration-200 hover:text-white"
+						>
+							Sign Up
+						</Link>
+					</div>
 				</div>
 			</div>
 		</header>
