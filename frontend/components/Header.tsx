@@ -49,7 +49,7 @@ export default function Header() {
 					<div className="shrink-0 self-center">
 						<Link href="/" title="logo">
 							<Image
-								className="w-auto h-auto pb-1"
+								className="pb-1"
 								src="/images/image.png"
 								alt="logo"
 								width={100}
@@ -121,12 +121,21 @@ export default function Header() {
 								)}
 							</div>
 						) : (
-							<Link
-								href="/signup"
-								className="text-lg font-bold text-gray-400 transition-all duration-200 hover:text-white"
-							>
-								Sign Up
-							</Link>
+							<div className="">
+								<Link
+									href="/login"
+									className="text-lg font-bold text-gray-400 transition-all duration-200 hover:text-white mr-4"
+								>
+									Login
+								</Link>
+
+								<Link
+									href="/signup"
+									className="text-lg font-bold text-gray-900 transition-all duration-200 hover:text-white border-2 border-blue-500 py-2 px-3 rounded-md bg-blue-500 hover:bg-blue-600"
+								>
+									Sign Up
+								</Link>
+							</div>
 						)}
 					</div>
 				</div>
