@@ -17,22 +17,18 @@ export const SignInWithGoogle = () => {
 
     async function signInWithGoogle() {
         try {
-            // Attempt to sign in with Google
             const userCredential = await signInWithPopup(auth, googleProvider);
             const user = userCredential.user;
-
-            console.log('User signed in: ', user);
 
             const colRef = collection(firestore, 'users');
             const userId = user.uid;
             const userDocRef = doc(colRef, userId);
 
             router.push('/about');
-            // Check if user document already exists
+
             const userDoc = await getDoc(userDocRef);
 
             if (!userDoc.exists()) {
-                // If user doesn't exist, create a new document
                 await setDoc(userDocRef, {
                     uid: user.uid,
                     displayName: user.displayName,
@@ -41,7 +37,6 @@ export const SignInWithGoogle = () => {
                     signInMethod: 'google',
                     createdAt: new Date()
                 });
-                console.log('New user information saved to Firestore');
             } else {
                 console.log('Existing user signed in');
             }
