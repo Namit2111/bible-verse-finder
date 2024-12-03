@@ -1,10 +1,10 @@
 ![Versify](https://github.com/user-attachments/assets/17a7697a-2bd3-46dc-9433-0d38454ee837)
 
-Welcome to the **Versify**! This repository contains code to parse and analyze the Bible using the NLTK Gutenberg corpus. You can search for similar Bible verses based on a theme using a Flask web application.
+Welcome to the **Versify**! This repository contains code to parse and analyze the Bible . You can search for similar Bible verses based on a theme using our Flask web application.
 
 ## 🌟 Features
 - Parse the entire Bible into books, chapters, and verses.
-- Utilize TF-IDF vectorization to analyze verses.
+- Utilize Hugging Face Sentence Transformers for vectorization to analyze verses.
 - Predict similar verses based on user input using KMeans clustering.
 - Interactive Flask web interface.
 
