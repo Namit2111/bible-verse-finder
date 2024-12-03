@@ -4,7 +4,7 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
 
 ## 🌟 Features
 - Parse the entire Bible into books, chapters, and verses.
-- Utilize Hugging Face Sentence Transformers for vectorization to analyze verses.
+- Utilizes Hugging Face Sentence Transformers for vectorization to analyze verses.
 - Predict similar verses based on user input using KMeans clustering.
 - Interactive Flask web interface.
 
@@ -13,7 +13,6 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
 ### Prerequisites
 - Python `3.10.x`
 - Required Python libraries:
-  - nltk
   - Flask
   - scikit-learn
   - numpy
@@ -31,11 +30,6 @@ Welcome to the **Versify**! This repository contains code to parse and analyze t
     pip install -r requirements.txt
     ```
 
-3. Download the NLTK Gutenberg corpus:
-    ```python
-    import nltk
-    nltk.download('gutenberg')
-    ```
 
 ### Usage
 1. Run the Flask web application:
@@ -68,15 +62,16 @@ __OR__
 ## 📄 License
 This project is licensed under the terms of the GNU General Public License. See the [LICENSE.md](LICENSE.md) file for details.
 
-## 🙏 Acknowledgements
-- Inspired by the countless hours spent studying and reflecting on the Bible.
-
 ## 🤝 Contributing
 Contributions are welcome! Please read the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 Special Thanks to our Contributors! 
 
 <a href="https://github.com/Namit2111/bible-verse-finder/graphs/contributors">
+
+
+## 🙏 Acknowledgements
+- Inspired by the countless hours spent studying and reflecting on the Bible.
   <img src="https://contrib.rocks/image?repo=Namit2111/bible-verse-finder" />
 </a>
 
