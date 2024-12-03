@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { NavMenu } from "@/lib/interface";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
 const navMenu = [
 	{
@@ -49,7 +49,7 @@ export default function Header() {
 					<div className="shrink-0 self-center">
 						<Link href="/" title="logo">
 							<Image
-								className="pb-1"
+								className="w-auto h-auto pb-1"
 								src="/images/image.png"
 								alt="logo"
 								width={100}
