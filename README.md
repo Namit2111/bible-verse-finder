@@ -1,6 +1,10 @@
 ![Versify](https://github.com/user-attachments/assets/17a7697a-2bd3-46dc-9433-0d38454ee837)
 
+
+
 Welcome to the **Versify**! This repository contains code to parse and analyze the Bible . You can search for similar Bible verses based on a theme using our Flask web application.
+
+[![](https://dcbadge.limes.pink/api/server/https://discord.gg/UdQZGmYmC2)](https://discord.gg/UdQZGmYmC2)    
 
 ## 🌟 Features
 - Parse the entire Bible into books, chapters, and verses.
