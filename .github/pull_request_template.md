@@ -3,8 +3,8 @@
 
 ## Related Issues
 <!-- List any related issues, tasks, or pull requests, and include their IDs if applicable. -->
-- Fixes # (issue)
-- Related to # (issue)
+- Closes # (issue)
+
 
 ## Changes List
 <!-- Detail the specific changes you have made, such as bug fixes, feature enhancements, etc. -->
