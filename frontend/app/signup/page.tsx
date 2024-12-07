@@ -10,7 +10,7 @@ export default function Signup(){
         <h1 className="text-3xl font-bold mb-4">Create Your Account</h1>
         <div className='mt-10 flex flex-col items-center gap-4 md:mt-14'>
           <SignInWithGoogle/>
-          </div>
+        </div>
         </div>
       </section>
     )
