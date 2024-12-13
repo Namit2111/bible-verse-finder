@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer, util
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Load the KMeans model and TF-IDF vectorizer
+# Load the KMeans model
 with open('models/kmeans_model.pkl', 'rb') as f:
     loaded_km = pickle.load(f)
 
