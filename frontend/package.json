@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
+    "@types/styled-components": "^5.1.34",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
@@ -21,6 +22,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icon-cloud": "^4.1.4",
+    "react-icons": "^5.4.0",
+    "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

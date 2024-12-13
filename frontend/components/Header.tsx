@@ -92,8 +92,8 @@ export default function Header() {
 						{user ? (
 							<div className="relative flex items-center">
 								{/* Display the user's image */}
-								<Image
-									src={user.photoURL || '/images/default-avatar.png'}
+								<img
+									src={user.photoURL || '/images/avatar.png'}
 									alt={user.displayName || 'User'}
 									className="h-8 w-8 rounded-full object-cover"
 								/>

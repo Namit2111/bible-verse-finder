@@ -5,7 +5,7 @@ import { RainbowButton } from "@/components/rainbow-button";
 import { Copy, Check } from "lucide-react";
 import { IoIosMore } from "react-icons/io";
 import Header from "../../components/Header";
-import { StyledWrapper } from "@/components/pattern";
+// import { StyledWrapper } from "@/components/pattern";
 
 function decimalToPercentage(decimal: number): string {
   return (decimal * 100).toFixed(1) + "%";
