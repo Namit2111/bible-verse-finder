@@ -20,7 +20,7 @@ You can contribute to this project in several ways:
 - Add Github username to `contributors.md`
 - Reporting bugs
 - Suggesting new features or improvements
-- Writing code (Flask, Machine Learning, HTML)
+- Writing code (Flask, Machine Learning, Typescript)
 - Updating documentation
 - Helping with the transition to Next.js (if you are familiar with it)
 
