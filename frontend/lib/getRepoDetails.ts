@@ -1,3 +1,4 @@
+import { line } from "framer-motion/client";
 import { RepoData } from "./interface";
 
 export const handleResponse = (response: PromiseSettledResult<Response>) => {
@@ -37,7 +38,8 @@ export const getRepoDetails = async (): Promise<RepoData> => {
     const lastPageMatch = headerLink?.match(/<[^>]*[&?]page=(\d+)>; rel="last"/);
     const totalCommits = lastPageMatch ? +lastPageMatch[1] : 1;
 
-    const totalLinesOfCode = Array.isArray(linesOfCode) ? linesOfCode.reduce((acc: number, curr: number[]) => acc + (curr[1] - Math.abs(curr[2])), 0) : 1;
+    // temporary fix here because the file count we are trying to ignore was done in one commit, so we use the commit hash to remove it from the stats
+    const totalLinesOfCode = Array.isArray(linesOfCode) ? linesOfCode.filter((line: Number[]) => line[0] !== 1731196800).reduce((acc: number, curr: number[]) => acc + (curr[1] - Math.abs(curr[2])), 0) : 1;
 
    return {
       totalCommits,
