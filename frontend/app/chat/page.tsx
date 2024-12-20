@@ -3,9 +3,9 @@ import ChatBox from "../../components/ChatBox";
 
 const Page = () => {
   return (
-    <div className="w-screen h-screen flex flex-col">
+    <div className="w-screen h-screen flex flex-col bg-black">
       <Header />
-      <div className="flex-grow flex items-center justify-center relative">
+      {/* <div className="flex-grow flex items-center justify-center relative"> */}
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <ChatBox />
         </div>
@@ -48,7 +48,7 @@ const Page = () => {
           </svg>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
