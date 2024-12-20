@@ -16,6 +16,10 @@ const navMenu = [
     name: "Verse Match",
     link: "/versematch",
   },
+  {
+    name: "BibleBot",
+    link: "/chat",
+  },
 ];
 
 export default function Header() {
