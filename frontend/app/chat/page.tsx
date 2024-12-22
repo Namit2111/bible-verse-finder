@@ -3,13 +3,17 @@ import ChatBox from "../../components/ChatBox";
 
 const Page = () => {
   return (
-    <div className="w-screen h-screen flex flex-col bg-black">
-      <Header />
-      {/* <div className="flex-grow flex items-center justify-center relative"> */}
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <ChatBox />
+    <div className="w-screen min-h-screen flex flex-col bg-black relative">
+      <div className="z-10">
+        <Header />
+      </div>
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative flex-grow z-10">
+        <div className="relative flex flex-col h-full">
+          <div className="flex-grow overflow-y-auto">
+            <ChatBox />
+          </div>
         </div>
-      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-[-1] pointer-events-none">
           <svg
             className="blur-3xl filter opacity-60"
             width="1444"
@@ -48,7 +52,7 @@ const Page = () => {
           </svg>
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
