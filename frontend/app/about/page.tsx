@@ -1,4 +1,5 @@
 "use client";
+
 import React, { Suspense, useEffect, useState } from "react";
 import Header from "@/components/Header";
 import { NumberTicker } from "@/components/NumberTicker";
@@ -14,15 +15,20 @@ export default function About() {
 	});
 
 	useEffect(() => {
-		const cachedData = sessionStorage.getItem('repoData');
-		if (cachedData) {
-			const data = JSON.parse(cachedData);
-			if (isAnyRepoDetailDefault(data)) {
-				fetchRepoData()
-			} else setRepoData(data);
-		} else {
-			fetchRepoData();
-		}
+		const getData = async () => {
+			const cachedData = sessionStorage.getItem('repoData');
+			if (cachedData) {
+				const data = JSON.parse(cachedData);
+				const isDefault = await isAnyRepoDetailDefault(data);
+				if (isDefault) {
+					fetchRepoData()
+				} else setRepoData(data);
+			} else {
+				fetchRepoData();
+			}
+		};
+		
+		getData();
 	}, []);
 
 	const fetchRepoData = async () => {
