@@ -3,12 +3,30 @@ import { useState } from "react";
 import { VerseSimilarity } from "@/lib/interface";
 import { RainbowButton } from "@/components/rainbow-button";
 import { Copy, Check } from "lucide-react";
-import { IoIosMore } from "react-icons/io";
+import { IoIosMore, IoIosShareAlt } from "react-icons/io";
 import Header from "../../components/Header";
 // import { StyledWrapper } from "@/components/pattern";
 
 function decimalToPercentage(decimal: number): string {
   return (decimal * 100).toFixed(1) + "%";
+}
+
+function generateSharingLink(platform: string, scriptureText: string, scriptureURL: string): string {
+  const encodedText = encodeURIComponent(scriptureText);
+  const encodedURL = encodeURIComponent(scriptureURL); 
+
+  switch (platform) {
+    case "X": 
+      return `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedURL}`; 
+    case "Threads": 
+      return `https://www.threads.net`; //Thread does not support direct URl sharing
+    case "Pinterest":
+      return `https://pinterest.com/pin/create/button/?description=${encodedText}&url=${encodedURL}`;
+      case "Instagram":
+        return `https://instagram.com`; //Instagram does not support direct URL sharing
+    default: 
+      throw new Error("Unsupported platform"); 
+    }
 }
 
 export default function VerseSearch() {
@@ -17,6 +35,7 @@ export default function VerseSearch() {
   const [error, setError] = useState<string>();
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [menuIndex, setMenuIndex] = useState<number | null>(null);
+  const [shareMenuIndex, setShareMenuIndex] = useState<number | null>(null);
   const [display, setDisplay] = useState<number>(5);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +76,11 @@ export default function VerseSearch() {
 
   const toggleMenu = (index: number) => {
     setMenuIndex(menuIndex === index ? null : index);
+  };
+
+  
+  const toggleShareMenu = (index: number) => {
+   setShareMenuIndex(shareMenuIndex === index ? null : index);
   };
 
   function handleLoadMore() {
@@ -166,8 +190,75 @@ export default function VerseSearch() {
                                       <Copy className="w-5 h-5" />
                                     )}
                                   </button>
-                                </div>
-                              )}
+
+                                  {/* Share Button */}
+                                  <button
+                                    onClick={() => toggleShareMenu(index)}
+                                    className="p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                                    style={{display: 'flex', alignItems: 'center'}}
+                                    aria-label="Share options"
+                                  >
+                                    <IoIosShareAlt className="w-5 h-5" />
+                                    <span>Share</span>
+                                  </button>
+
+                                  {/* Share Sub-Menu */}
+                                  {shareMenuIndex === index && (
+                                    <div className="absolute bg-white shadow-md rounded-md p-1 flex flex-col gap-2 share-menu"
+                                         style={{left: '100%', zIndex: '10', width: '190px'}}
+                                    >
+                                      <button
+                                        onClick={() =>
+                                        window.open(
+                                          generateSharingLink("X", result.verse, "https://example.com"), 
+                                          "_blank"
+                                        )
+                                      }
+                                      className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                      <img src="/images/x-icon.png" alt="X" className="w-5 h-5" />
+                                      <span>Share on X</span>
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        window.open(
+                                          generateSharingLink("Threads", result.verse, "https://example.com"), 
+                                          "_blank"
+                                        )
+                                      }
+                                      className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                      <img src="/images/threads-icon.png" alt="Threads" className="w-5 h-5" />
+                                      <span>Share on Threads</span>
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        window.open(
+                                          generateSharingLink("Pinterest", result.verse, "https://example.com"),
+                                          "_blank"
+                                        )
+                                      }
+                                      className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                      <img src="/images/pinterest-icon.png" alt="Pinterest" className="w-5 h-5" />
+                                      <span>Share on Pinterest</span>
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        window.open(
+                                          generateSharingLink("Instagram", result.verse, "https://example.com"),
+                                          "_blank"
+                                        )
+                                      }
+                                      className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                      <img src="/images/instagram-icon.png" alt="Instagram" className="w-5 h-5" />
+                                      <span>Share on Instagram</span>
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                            )}
                             </div>
                           </li>
                         ))}
