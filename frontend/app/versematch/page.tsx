@@ -209,7 +209,7 @@ export default function VerseSearch() {
                                       <button
                                         onClick={() =>
                                         window.open(
-                                          generateSharingLink("X", result.verse, "https://versify.com"), 
+                                          generateSharingLink("X", result.verse, "https://example.com"), 
                                           "_blank"
                                         )
                                       }
@@ -220,10 +220,10 @@ export default function VerseSearch() {
                                     </button>
                                     <button
                                       onClick={() =>{
-                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://versify.com")}`;
+                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://example.com")}`;
                                         copyToClipboard(shareText,index); 
                                         window.open(
-                                          generateSharingLink("Threads", result.verse, "https://versify.com"), 
+                                          generateSharingLink("Threads", result.verse, "https://example.com"), 
                                           "_blank"
                                           )
                                         }
@@ -236,7 +236,7 @@ export default function VerseSearch() {
                                     <button
                                       onClick={() =>
                                         window.open(
-                                          generateSharingLink("Pinterest", result.verse, "https://versify.com"),
+                                          generateSharingLink("Pinterest", result.verse, "https://example.com"),
                                           "_blank"
                                         )
                                       }
@@ -247,10 +247,10 @@ export default function VerseSearch() {
                                     </button>
                                     <button
                                       onClick={() => {
-                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://versify.com")}`;
+                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://example.com")}`;
                                         copyToClipboard(shareText,index); 
                                         window.open(
-                                          generateSharingLink("Instagram", result.verse, "https://versify.com"),
+                                          generateSharingLink("Instagram", result.verse, "https://example.com"),
                                           "_blank"
                                         )
                                         }
