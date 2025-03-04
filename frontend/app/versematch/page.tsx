@@ -199,7 +199,6 @@ export default function VerseSearch() {
                                     aria-label="Share options"
                                   >
                                     <IoIosShareAlt className="w-5 h-5" />
-                                    <span>Share</span>
                                   </button>
 
                                   {/* Share Sub-Menu */}
@@ -210,7 +209,7 @@ export default function VerseSearch() {
                                       <button
                                         onClick={() =>
                                         window.open(
-                                          generateSharingLink("X", result.verse, "https://example.com"), 
+                                          generateSharingLink("X", result.verse, "https://versify.com"), 
                                           "_blank"
                                         )
                                       }
@@ -220,11 +219,14 @@ export default function VerseSearch() {
                                       <span>Share on X</span>
                                     </button>
                                     <button
-                                      onClick={() =>
+                                      onClick={() =>{
+                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://versify.com")}`;
+                                        copyToClipboard(shareText,index); 
                                         window.open(
-                                          generateSharingLink("Threads", result.verse, "https://example.com"), 
+                                          generateSharingLink("Threads", result.verse, "https://versify.com"), 
                                           "_blank"
-                                        )
+                                          )
+                                        }
                                       }
                                       className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
                                     >
@@ -234,7 +236,7 @@ export default function VerseSearch() {
                                     <button
                                       onClick={() =>
                                         window.open(
-                                          generateSharingLink("Pinterest", result.verse, "https://example.com"),
+                                          generateSharingLink("Pinterest", result.verse, "https://versify.com"),
                                           "_blank"
                                         )
                                       }
@@ -244,11 +246,14 @@ export default function VerseSearch() {
                                       <span>Share on Pinterest</span>
                                     </button>
                                     <button
-                                      onClick={() =>
+                                      onClick={() => {
+                                        const shareText = `${result.verse} ~ Made with Versify\n${generateSharingLink("Threads", result.verse, "https://versify.com")}`;
+                                        copyToClipboard(shareText,index); 
                                         window.open(
-                                          generateSharingLink("Instagram", result.verse, "https://example.com"),
+                                          generateSharingLink("Instagram", result.verse, "https://versify.com"),
                                           "_blank"
                                         )
+                                        }
                                       }
                                       className="flex items-center gap-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
                                     >
