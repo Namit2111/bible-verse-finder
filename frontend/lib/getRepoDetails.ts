@@ -1,6 +1,9 @@
+"use server";
+
+import getRepoLinesOfCode from "git-repo-lines-of-code";
 import { RepoData } from "./interface";
 
-export const handleResponse = (response: PromiseSettledResult<Response>) => {
+export const handleResponse = async (response: PromiseSettledResult<Response>) => {
   if (response.status === "fulfilled") {
     return response.value;
   } else {
@@ -9,7 +12,7 @@ export const handleResponse = (response: PromiseSettledResult<Response>) => {
   }
 }
 
-export const isAnyRepoDetailDefault = (data: RepoData) => {
+export const isAnyRepoDetailDefault = async (data: RepoData) => {
   return (
     data.totalCommits === 1 ||
     data.totalContributors === 1 ||
@@ -24,25 +27,24 @@ export const getRepoDetails = async (): Promise<RepoData> => {
     // Fetch all necessary data concurrently
     const results = await Promise.allSettled([
       fetch(`${repoUrl}/commits?per_page=1&page=1`),
-      fetch(`${repoUrl}/contributors`),
-      fetch(`${repoUrl}/stats/code_frequency`),
+      fetch(`${repoUrl}/contributors`)
     ]);
 
-    const [commitsResponse, contributorsResponse, codeFreqResponse] = await Promise.all(results.map(handleResponse));
+    const [commitsResponse, contributorsResponse] = await Promise.all(results.map(handleResponse));
+
+    // here the call to the package is made passing the files not to  be counted into it so as to get an accurate LOC
+    const linesOfCode = await getRepoLinesOfCode("Namit2111", "bible-verse-finder", ["../backend/utils/bible.json", "package-lock.json"]);
 
     const contributors = await contributorsResponse?.json();
-    const linesOfCode = await codeFreqResponse?.json();
 
     const headerLink = commitsResponse?.headers.get("link") || "";
     const lastPageMatch = headerLink?.match(/<[^>]*[&?]page=(\d+)>; rel="last"/);
     const totalCommits = lastPageMatch ? +lastPageMatch[1] : 1;
 
-    const totalLinesOfCode = Array.isArray(linesOfCode) ? linesOfCode.reduce((acc: number, curr: number[]) => acc + (curr[1] - Math.abs(curr[2])), 0) : 1;
-
    return {
       totalCommits,
       totalContributors: Array.isArray(contributors) ? contributors.length : 1,
-      totalLinesOfCode
+      totalLinesOfCode: Number.isInteger(linesOfCode) ? +linesOfCode : 1,
     };
 
   } catch (error) {
