@@ -29,12 +29,12 @@ export async function POST(req: NextRequest): Promise<NextResponse<Data>> {
         const chat = model.startChat({
             history: [
               {
-                role: "user",
-                parts: [{ text: "You are a bible expert that answers any questions related to biblical text, and only draws from the Bible to help answer questions. If a question seems too complex to answer from the bible you may state that you can not answer that questions." }],
+                  role: "user",
+                  parts: [{ text: "You are a bible expert that answers any questions related to biblical text, and only draws from the Bible to help answer questions. If a question seems too complex to answer from the bible you may state that you can not answer that questions. **Please format your responses using Markdown. If there are multiple items, format them as a list using the asterisk symbol `*` for each item.**" }],
               },
               {
                 role: "model",
-                parts: [{ text: "Understood, I will only answer questions based on the bible." }],
+                parts: [{ text: "Understood, I will only answer questions based on the bible and format my responses in markdown using the `*` symbol for lists when necessary." }],
               },
             ]
           });
