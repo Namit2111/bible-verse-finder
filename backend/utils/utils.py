@@ -1,69 +1,104 @@
-import pickle
 import json
 import numpy as np
-from sentence_transformers import SentenceTransformer, util
-from sklearn.cluster import KMeans
-from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer
+from qdrant_client import QdrantClient
+from qdrant_client.models import VectorParams, Distance, PointStruct
 
-# Load the KMeans model
-with open('models/kmeans_model.pkl', 'rb') as f:
-    loaded_km = pickle.load(f)
-
-
-# Load the Bible data from bible.json
-with open('utils/bible.json', 'r') as f:
-    bible_data = json.load(f)
-
-# Filter out verses from the "Song of Solomon"
-filtered_verses = [verse for verse in bible_data['verses'] if verse['book_name'] == 'John' or verse['book_name'] == 'Romans' or  verse['book_name'] == 'Ephesians' or  verse['book_name'] == 'Philippians']
-
-# Extract text, book name, chapter, and verse
-verses = [verse['text'] for verse in filtered_verses]
-metadata = [(verse['book_name'], verse['chapter'], verse['verse']) for verse in filtered_verses]
-
-# Load the sentence transformer model
-model = SentenceTransformer('all-MiniLM-L6-v2')
-
-# Embed the verses
-embeddings = model.encode(verses, convert_to_tensor=True)
-
-# Cluster the embeddings using KMeans
-num_clusters = 350 
-kmeans = KMeans(n_clusters=num_clusters)
-kmeans.fit(embeddings.cpu().numpy())
-labels = kmeans.labels_
+# Qdrant Configuration (for Docker)
+QDRANT_HOST = "localhost"  # Or the IP address of your Docker host
+QDRANT_PORT = 6333  # Default Qdrant port
+COLLECTION_NAME = "bible_verses"
 
 
-def get_similar_verses(user_input):
-    # Embed the user input
-    user_input_embedding = model.encode([user_input], convert_to_tensor=True)
+def initialize_qdrant_client():
+    """Initializes and returns a Qdrant client."""
+    client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    return client
 
-    # Predict the cluster for the user input
-    predicted_cluster = kmeans.predict(user_input_embedding.cpu().numpy())[0]
 
-    # Get the indices of the verses in the predicted cluster
-    cluster_indices = np.where(labels == predicted_cluster)[0]
+def create_collection(client, collection_name, vector_size):
+    """Creates a Qdrant collection if it doesn't exist."""
+    try:
+        client.get_collection(collection_name)  # Check if exists
+        print(f"Collection '{collection_name}' already exists.")
+    except Exception as e:
+        print(f"Collection '{collection_name}' not found, creating...")
+        client.create_collection(
+            collection_name=collection_name,
+            vectors_config=VectorParams(size=vector_size, distance=Distance.COSINE),
+        )
 
-    # Compute similarity between the user input and each verse in the cluster
-    cluster_embeddings = embeddings[cluster_indices]
-    similarities = util.pytorch_cos_sim(user_input_embedding, cluster_embeddings)[0]
 
-    # Get the indices of the top 20 most similar verses within the cluster
-    top_indices = similarities.argsort(descending=True)[:20]
+def load_bible_data(filepath="utils/bible.json"):
+    """Loads Bible data from a JSON file and filters verses."""
+    with open(filepath, 'r') as f:
+        bible_data = json.load(f)
 
-    # Prepare the results
-    results = [{
-        'verse': verses[cluster_indices[i]],
-        'book_name': metadata[cluster_indices[i]][0],
-        'chapter': metadata[cluster_indices[i]][1],
-        'verse_number': metadata[cluster_indices[i]][2],
-        'similarity': similarities[i].item()
-    } for i in top_indices]
+    filtered_verses = [verse for verse in bible_data['verses'] if verse['book_name'] in ('John', 'Psalms', 'Romans', 'Ephesians', 'Philippians')]
+
+    return filtered_verses
+
+
+def embed_and_store_data(client, collection_name, verses, model):
+    """Embeds verses and stores them in Qdrant."""
+    embeddings = model.encode([verse['text'] for verse in verses], convert_to_tensor=False)  # Convert to numpy arrays
+    points = []
+    for i, verse in enumerate(verses):
+        points.append(
+            PointStruct(
+                id=i,  # Use a unique identifier for each verse
+                vector=embeddings[i].tolist(),  # Qdrant needs lists or numpy arrays.
+                payload={
+                    "verse": verse['text'],
+                    "book_name": verse['book_name'],
+                    "chapter": verse['chapter'],
+                    "verse_number": verse['verse'],
+                },
+            )
+        )
+
+    client.upsert(collection_name=collection_name, points=points, wait=True) #wait=True makes sure that everyting is uploadeds
+
+
+def get_similar_verses(client, collection_name, user_input, model, top_k=20):
+    """Searches Qdrant for similar verses."""
+    user_input_embedding = model.encode(user_input, convert_to_tensor=False).tolist() #convert to a list
+
+    search_result = client.search(
+        collection_name=collection_name,
+        query_vector=user_input_embedding,
+        limit=top_k,
+        with_payload=True,  # Retrieve the verse data
+        #score_threshold=0.5 #optional threshold
+    )
+
+    results = []
+    for hit in search_result:
+        results.append({
+            'verse': hit.payload['verse'],
+            'book_name': hit.payload['book_name'],
+            'chapter': hit.payload['chapter'],
+            'verse_number': hit.payload['verse_number'],
+            'similarity': hit.score  # Qdrant returns similarity score
+        })
 
     return results
 
-# # Example usage
-# user_input = "Love thy neighbor"
-# similar_verses = get_similar_verses(user_input)
-# for result in similar_verses:
-#     print(f"Verse: {result['verse']}, Book: {result['book_name']}, Chapter: {result['chapter']}, Verse: {result['verse_number']}, Similarity: {result['similarity']:.4f}")
+
+def initialize_and_load():
+    """
+    Initializes the Qdrant client, creates the collection, loads data,
+    embeds verses, and stores them in Qdrant.
+    """
+    client = initialize_qdrant_client()
+    model = SentenceTransformer('all-MiniLM-L6-v2')  # Load model once
+    vector_size = model.gret_sentence_embedding_dimension()
+
+    create_collection(client, COLLECTION_NAME, vector_size)
+    verses = load_bible_data()
+    embed_and_store_data(client, COLLECTION_NAME, verses, model)
+    print("Qdrant setup complete.")
+
+if __name__ == '__main__':
+    # initialize_and_load() # Only run this once to populate the database!!! NEVER RUN AGAIN UNLESS UPDATING THE DATA
+    pass # Keep it empty to avoid accidental execution

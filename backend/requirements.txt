@@ -15,3 +15,4 @@ scipy==1.14.1
 threadpoolctl==3.5.0
 tqdm==4.66.5
 Werkzeug==3.0.4
+qdrant-client==1.13.3

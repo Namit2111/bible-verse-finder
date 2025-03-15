@@ -9,9 +9,7 @@ const Page = () => {
       </div>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative flex-grow z-10">
         <div className="relative flex flex-col h-full">
-          <div className="flex-grow overflow-y-auto">
             <ChatBox />
-          </div>
         </div>
         <div className="absolute inset-0 z-[-1] pointer-events-none">
           <svg

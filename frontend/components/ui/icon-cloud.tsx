@@ -10,6 +10,7 @@ import {
   SimpleIcon,
 } from "react-icon-cloud";
 
+
 export const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {
     style: {

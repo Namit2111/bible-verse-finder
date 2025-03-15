@@ -77,7 +77,7 @@ const ChatBox: React.FC = () => {
 
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-3/6">
             <div ref={chatContainerRef} className="flex-grow overflow-y-auto p-4">
                 {messages.map((message, index) => (
                     <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
@@ -130,7 +130,7 @@ const ChatBox: React.FC = () => {
                         placeholder="Ask me anything about the Bible..."
                         className="flex-grow rounded-l-md border border-gray-300 p-2 focus:outline-none"
                     />
-                    <button type="submit" className="bg-blue-500 text-white rounded-r-md p-2 hover:bg-blue-600">
+                    <button type="submit" className="bg-blue-500 text-white rounded-r-md p-2 hover:bg-blue-600 ">
                         Send
                     </button>
                 </form>

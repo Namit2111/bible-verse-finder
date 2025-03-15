@@ -47,13 +47,14 @@ export default function VerseSearch() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("userInput:", userInput);
     try {
       const response = await fetch("/api/similarity", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userInput }),
+        body: JSON.stringify({ userInput : userInput.trim() }),
       });
       if (!response.ok) {
         setError("Failed to fetch data");
